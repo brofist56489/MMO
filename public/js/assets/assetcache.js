@@ -1,0 +1,4 @@
+var Cache = {
+    scripts: {},
+    images: {},
+};

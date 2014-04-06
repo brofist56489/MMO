@@ -1,0 +1,17 @@
+extends layout
+
+block loadHeadFiles
+    link(rel="stylesheet" href="css/game_page.css")
+
+    script(src="js/vendor/three.min.js")
+    script(src="js/assets/assetcache.js")
+    script(src="js/assets/assetloader.js")
+    
+    // script(src="js/gfx/threeHandler.js")
+    // script(src="js/world/world.js")
+    
+    // script(src="js/game/gameupdater.js")
+    script(src="js/game/game.js")
+
+block content
+    div(id="webgl-container")

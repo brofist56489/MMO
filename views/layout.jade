@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/css/style.css')
+        
+        script(src="/js/vendor/class.js")
+        script(src="/js/vendor/jquery.js")
+        script(src="/js/vendor/lodash.js")
+        
+        block loadHeadFiles
+    
+    body
+        block content

@@ -1,52 +1,65 @@
 var World = Class.extend({
     three: null,
-    cube: null,
-    cubes: [],
+    triangle: null,
     
     init: function() {
         this.three = new ThreeHandler();
         this.three.setup();
-        
-        this.cube = new THREE.Mesh(
-            new THREE.CubeGeometry(100, 100, 100),
-            new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: false })
+
+        this.triangle = new THREE.Mesh(
+            this.genCone(50, 100, 8),
+            new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: false, side: THREE.FrontSide })
         );
-        
-        //this.addToScene(this.cube);
-        
-        this.genCubes();
+
+        this.addToScene(this.triangle);
         
         this.three.camera.position.z = 200;
         
         var light = new THREE.PointLight(0xffffff);
-        light.position.set(50, 50, 150);
+        light.position.set(0, 0, 500);
         this.addToScene(light);
-    },
-    
-    genCubes: function() {
-        for(var i=0; i<250; i++) {
-            var cube = new THREE.Mesh(
-                new THREE.CubeGeometry(20, 20, 20),
-                new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: false })
-            );
-            cube.position.set(Math.random() * 200 - 100, Math.random() * 200 - 100, Math.random() * 200 - 100);
-            this.cubes.push(cube);
-            this.addToScene(cube);
-        }  
     },
     
     addToScene: function(o) {
         this.three.scene.add(o);
     },
+
+    genCone: function(r, h, p) {
+        var geom = new THREE.Geometry();
+
+        var h2 = h / 2;
+        var topVert = new THREE.Vector3(0, h2, 0);
+        var bottomVert = new THREE.Vector3(0, -h2, 0);
+
+        var presicion = p || 100;
+        var step = 2 * Math.PI / presicion;
+        var circVerts = [];
+        for(var i=0, j=2*Math.PI; i < j; i += step) {
+            circVerts.push(new THREE.Vector3(Math.cos(i) * r, -h2, Math.sin(i) * r));
+        }
+
+        geom.vertices.push(topVert);
+        geom.vertices.push(bottomVert);
+
+        for(var i=0, j=presicion; i < j; i++) {
+            geom.vertices.push(circVerts[i]);
+        }
+
+        for(var i=2, j=presicion+1; i <= j; i++) {
+            var k = (i === presicion+1) ? 2 : i+1;
+            geom.faces.push(new THREE.Face3(i, 0, k));
+            geom.faces.push(new THREE.Face3(k, 1, i));
+        }
+
+        geom.computeFaceNormals();
+
+        return geom;
+    },
     
     tick: function() {
-        var amm = (2*Math.PI/300);
-        this.cube.rotation.y += amm;
-        // this.cube.rotation.x += 0.04;
-        // this.cube.rotation.z += 0.07;
-        _.forEach(this.cubes, function(cube) {
-            cube.rotation.y += amm; 
-        });
+        this.triangle.rotation.y += 0.01;
+        this.triangle.rotation.x += 0.02;
+        this.triangle.rotation.z += 0.03;
     },
     
     render: function() {

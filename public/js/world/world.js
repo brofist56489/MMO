@@ -57,9 +57,6 @@ var World = Class.extend({
     },
     
     tick: function() {
-        this.triangle.rotation.y += 0.01;
-        this.triangle.rotation.x += 0.02;
-        this.triangle.rotation.z += 0.03;
     },
     
     render: function() {

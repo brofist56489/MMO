@@ -1,0 +1,50 @@
+Decide what kind of game im making
+    Things to keep in mind:
+        Some kind of MMO:
+            like WOW, many people can all see each other
+            like N, lot of people, no coop / verses
+        
+    Board Game:
+        See other people
+        Remake table board game
+        Come up with something interesting
+            Im stuck...
+    
+    Challenge Type Game:
+        User created levels
+        Platformer?
+        Puzzler?
+    
+    Town / City Builder -- This is what im thinking
+        Inividual City
+        personal cities, public cities.
+        
+        Tell a story? Like Banished.
+        
+        Tech Tree?
+        Stay Low Level?
+        
+        Collect and Maintain many resources?
+        
+        World simulates when gone?
+        World simulated on the client or server side?
+            client side simulation
+            server double checks
+            client saves remotely frequently
+            
+        World size:
+            Definitely not infinite.
+            depends on what the gameplay will be like.
+            100x100 is a decent size.
+        
+        2D:
+            Easy Rendering
+                Squares with preset materials
+                No Raycasting neccisary (thats not even close to how its spelled).
+        
+        2.5D:
+            Same as 2D just rendered in 3D.
+            
+        3D:
+            Even more like Banished
+            Would need a nice GUI.

@@ -7,12 +7,12 @@ var World = Class.extend({
         this.three.setup();
 
         this.triangle = new THREE.Mesh(
-            this.genCone(50, 100, 4),
-            new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: false, side: THREE.FrontSide })
+            this.genCone(50, 100, 8),
+            new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true, side: THREE.FrontSide })
         );
 
         this.addToScene(this.triangle);
-        
+    
         this.three.camera.position.z = 200;
         
         var light = new THREE.PointLight(0xffffff);
@@ -45,7 +45,7 @@ var World = Class.extend({
             geom.vertices.push(circVerts[i]);
         }
 
-        for(var i=2, j=pesicion+1; i <= j; i++) {
+        for(var i=2, j=presicion+1; i <= j; i++) {
             var k = (i === presicion+1) ? 2 : i+1;
             geom.faces.push(new THREE.Face3(i, 0, k));
             geom.faces.push(new THREE.Face3(k, 1, i));
@@ -57,8 +57,9 @@ var World = Class.extend({
     },
     
     tick: function() {
-        this.triangle.rotation.y += 0.01 * 5;
-        //this.triangle.rotation.x += -0.01 * 5;
+        //this.triangle.rotation.y += 0.01;// * 5;
+        this.triangle.rotation.x += -0.01;// * 5;
+        //this.triangle.rotation.z += 0.02;// * 5;
     },
     
     render: function() {

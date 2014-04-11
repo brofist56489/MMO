@@ -24,9 +24,11 @@ function loadAllAssets() {
         images = new ImageLoader();
         images.loadFiles(function() {
             console.log("All images loaded");
+            
+            prepareForRun();
             setTimeout(function() {
-               new Game();
-            }, 1000); 
+                new Game();
+            }, 1);
         });
     });
 }

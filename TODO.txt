@@ -1,2 +1,9 @@
+HOMEWORK FIRST!!!!
+
 Input Handling of all sorts.
-    DONE! (thanks to KeyboardJS)
+    Keyboard DONE! (thanks to KeyboardJS)
+    Write mouse code DONE!
+    
+
+Work out how to do 2d rendering with Three js (or find another library).
+Found pixi.js... Dont like having to store all the sprites (bad for tilemap).

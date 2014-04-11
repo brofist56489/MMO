@@ -24,7 +24,7 @@ Decide what kind of game im making
         Tech Tree?
         Stay Low Level?
         
-        Collect and Maintain many resources?
+        Collect and Maintain many resources? Yes, but only some resources
         
         World simulates when gone?
         World simulated on the client or server side?

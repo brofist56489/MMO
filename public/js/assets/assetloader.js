@@ -12,11 +12,16 @@ var AssetLoader = Class.extend({
 var ScriptLoader = AssetLoader.extend({
     init: function() {
         this.filesToLoad = [
-            "/js/input/mousehandler.js",
-            "/js/vendor/stats.min.js",
-            "/js/gfx/threeHandler.js",
-            "/js/world/world.js",
+            "/js/game/gamesetup.js",
             "/js/game/gameupdater.js",
+            
+            "/js/input/mousehandler.js",
+            
+            "/js/vendor/stats.min.js",
+            
+            "/js/gfx/threeHandler.js",
+            
+            "/js/world/world.js",
         ];
     },
     

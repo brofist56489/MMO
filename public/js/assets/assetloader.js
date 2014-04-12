@@ -18,6 +18,7 @@ var ScriptLoader = AssetLoader.extend({
             "/js/input/mousehandler.js",
             
             "/js/vendor/stats.min.js",
+            "/js/vendor/heightmap.js",
             
             "/js/gfx/threeHandler.js",
             

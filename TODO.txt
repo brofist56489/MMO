@@ -7,3 +7,10 @@ Input Handling of all sorts.
 
 Work out how to do 2d rendering with Three js (or find another library).
 Found pixi.js... Dont like having to store all the sprites (bad for tilemap).
+
+Things to be done:
+    (April 11) 3d terrain making with heightmaps!!!!
+        1. Gen heightmaps
+        2. port them to geometry.
+        
+        

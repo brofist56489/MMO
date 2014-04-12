@@ -33,7 +33,7 @@ var ThreeHandler = Class.extend({
         this.renderer = new Three.WebGLRenderer();
         this.renderer.setSize(this.settings.render.width, this.settings.render.height);
         
-        this.renderer.setClearColorHex(0x111111, 1);
+        this.renderer.setClearColor(0x111111);
         
         this.camera = new Three.PerspectiveCamera(
             this.settings.camera.fov,

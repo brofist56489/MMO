@@ -1,5 +1,5 @@
 var NoiseMap = {
-    ValueNoise: function(width, height, startOctave, endOctave, persistence, smoothAmount, seed, postprocess)
+    ValueNoise: function(width, height, sss, eee, persistence, smoothAmount, seed, postprocess)
     {
     	var valueNoiseMap = new Float32Array(width * height);
     
@@ -7,15 +7,15 @@ var NoiseMap = {
     	// octave 0 is the whole area
     	// octave 1 is the area divided by 4
     	// octave n is the previous octave with each area divided by 4
-    	var startOctave = 3;
+    	var startOctave = sss || 3;
     	// Go to the pixel level. This algorithm assumes base 2 area
-    	var endOctave = 7; //Math.log(width) / Math.log(2) - 2;
+    	var endOctave = Math.log(width) / Math.log(2) - 2;
     
     	// We need 4 points to do bilinear interpolation from for the noise generation for each octave.
     	// This is the summation of Math.pow(2, i + 1) - Math.pow(2, i) + 1 which represents the
     	// number of corners per depth of a quadtree. So depth zero has 4 and depth one has 9.
     	var nodeCount = 1 / 3 * (3 * (endOctave + 1) + 3 * Math.pow(2, (endOctave + 1) + 2) + Math.pow(2, 2 * (endOctave + 1) + 2) - 4) -
-    	                1 / 3 * (3 * startOctave + 3 * Math.pow(2, startOctaave + 2) + Math.pow(2, 2 * startOctave + 2) - 4);
+    	                1 / 3 * (3 * startOctave + 3 * Math.pow(2, startOctave + 2) + Math.pow(2, 2 * startOctave + 2) - 4);
     
     	var randomTree = new Float32Array(nodeCount);
     	for (var i = 0; i < randomTree.length; ++i)

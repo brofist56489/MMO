@@ -10,7 +10,7 @@ Found pixi.js... Dont like having to store all the sprites (bad for tilemap).
 
 Things to be done:
     (April 11) 3d terrain making with heightmaps!!!!
-        1. Gen heightmaps
-        2. port them to geometry.
+        1. Gen heightmaps DONE!
+        2. port them to geometry. DONE! (mostly, need to make it look good).
         
         

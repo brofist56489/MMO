@@ -14,6 +14,9 @@ var ScriptLoader = AssetLoader.extend({
         this.filesToLoad = [
             "/js/game/gamesetup.js",
             "/js/game/gameupdater.js",
+
+            "/js/util/cameracontrols.js",
+            "/js/util/utils.js",
             
             "/js/input/mousehandler.js",
             
@@ -23,6 +26,7 @@ var ScriptLoader = AssetLoader.extend({
             "/js/gfx/threeHandler.js",
             
             "/js/world/world.js",
+            "/js/world/worldgen.js",
         ];
     },
     
@@ -62,16 +66,12 @@ var ImageLoader = AssetLoader.extend({
     
     loadNextFile: function(callback) {
         var _this = this;
-        this.currentFile++;
-        if(this.currentFile == this.filesToLoad.length) {
+        var files = $.map(this.filesToLoad, function(file) {
+            Cache.images[file.valueOf()] = THREE.ImageUtils.loadTexture(file.valueOf());
+            return Cache.images[file.valueOf()];
+        });
+        $.when.apply($, files).then(function() {
             setTimeout(callback, 1);
-            return this;
-        }
-        var img = new Image();
-        img.onload = function() {
-            Cache.images[_this.filesToLoad[_this.currentFile]] = this;
-            _this.loadNextFile(callback);
-        };
-        img.src = this.filesToLoad[this.currentFile];
+        });
     },
 });

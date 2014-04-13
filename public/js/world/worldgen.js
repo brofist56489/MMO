@@ -34,7 +34,7 @@ var WorldGenerator = Class.extend({
     generate: function(three) {
     	this._genHeightMap();
         this._genWorld();
-    	this.plane = new THREE.Mesh(this.planeGeo, new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: false, map: Cache.images["/res/img/tiles.png"] }));
+    	this.plane = new THREE.Mesh(this.planeGeo, TILES.GRASS.material);
         this.plane.rotation.x = -Math.PI / 2;
     	return this.plane;
     },

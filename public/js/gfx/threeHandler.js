@@ -35,13 +35,22 @@ var ThreeHandler = Class.extend({
         
         this.renderer.setClearColor(0x111111);
         
-        this.camera = new Three.PerspectiveCamera(
-            this.settings.camera.fov,
-            this.settings.camera.aspect,
+        // this.camera = new Three.PerspectiveCamera(
+        //     this.settings.camera.fov,
+        //     this.settings.camera.aspect,
+        //     this.settings.camera.near,
+        //     this.settings.camera.far
+        // );
+
+        this.camera = new Three.OrthographicCamera(
+            -this.settings.render.width / 2, 
+            this.settings.render.width / 2,
+            this.settings.render.height / 2, 
+            -this.settings.render.height / 2,
             this.settings.camera.near,
             this.settings.camera.far
         );
-        
+
         this.scene = new Three.Scene();
         this.scene.add(this.camera);
         

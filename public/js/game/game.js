@@ -3,18 +3,26 @@ var Class = Class || {};
 var Game = Class.extend({
     world: null,
     running: true,
+    three: null,
     
     init: function() {
+        GAME = this;
+
+        this.three = new ThreeHandler();
+        this.three.setup();
         this.world = new World();
         new GameUpdater(this).start();
     },
     
     tick: function() {
         this.world.tick();
+
+        MouseJS.update();
     },
     
     render: function() {
         this.world.render();
+        GAME.three.render();
     },
 });
 

@@ -12,5 +12,9 @@ Things to be done:
     (April 11) 3d terrain making with heightmaps!!!!
         1. Gen heightmaps DONE!
         2. port them to geometry. DONE! (mostly, need to make it look good).
-        
-        
+
+    (April 12) decide how things will be rendered.
+    	1. flat 2d map with each tile being a mesh.
+    	2. terrain like RCT3 would be cool.
+    	3. ...
+    	THREE JS IS NOT FAST ENOUGH, SWITCHING TO CANVAS RENDERING.

@@ -1,20 +1,15 @@
 var World = Class.extend({
-    three: null,
     controls: null,
+    tileMap: null,
     
     init: function() {
-        this.three = new ThreeHandler();
-        this.three.setup();
+        var three = GAME.three;
 
-        this.controls = new CameraControl(this.three.camera);
+        this.tileMap = new TileMap(10, 10);
+        this.tileMap.addToScene(this);
 
-        this.addToScene(new WorldGenerator(16, 16, 69).generate(this.three));
-        // var t = new THREE.Mesh(genCone(50, 50, 8), new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: false }));
-        // t.position.z = -60;
-        // this.addToScene(t);
-
-        this.three.camera.rotation.x = -Math.PI / 3;
-        this.three.camera.position.y = 80;
+        this.controls = new CameraControl(three.camera);
+        three.camera.position.z = 1;
         
         var light = new THREE.PointLight(0xffffff);
         light.position.set(200, 200, 200);
@@ -23,7 +18,7 @@ var World = Class.extend({
     
     addToScene: function(o) {
         console.log(o);
-        this.three.scene.add(o);
+        GAME.three.scene.add(o);
     },
     
     tick: function() {
@@ -31,6 +26,5 @@ var World = Class.extend({
     },
     
     render: function() {
-        this.three.render();  
     },
 });

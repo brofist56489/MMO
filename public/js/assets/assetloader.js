@@ -23,7 +23,7 @@ var ScriptLoader = AssetLoader.extend({
             "/js/vendor/stats.min.js",
             "/js/vendor/heightmap.js",
             
-            "/js/gfx/threeHandler.js",
+            "/js/gfx/renderer.js",
             
             "/js/world/tiles/tile.js",
             "/js/world/tiles/tilemap.js",

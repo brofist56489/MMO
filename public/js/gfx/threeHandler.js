@@ -5,8 +5,6 @@ var ThreeHandler = Class.extend({
     renderer: null,
     camera: null,
     
-    stats: null,
-    
     settings: {},
     
     init: function() {
@@ -55,13 +53,6 @@ var ThreeHandler = Class.extend({
         this.scene.add(this.camera);
         
         $("#webgl-container").append(this.renderer.domElement);
-        
-        this.stats = new Stats();
-        this.stats.setMode(0);
-        this.stats.domElement.position = "absolute";
-        this.stats.domElement.top = "0px";
-        
-        $("#webgl-container").append(this.stats.domElement);
     },
     
     render: function() {

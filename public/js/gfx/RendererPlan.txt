@@ -1,0 +1,16 @@
+Renderer
+	CanvasRenderer
+	WebGLRenderer
+
+Static Methods:
+	drawRect(x, y, w, h, color)
+	drawCircle(x, y, r, color)
+	drawImage(image, x, y)
+
+
+
+
+Static control of RenderJS
+
+make calls like:
+	Render.drawRect(100, 100, 50, 100, "red");

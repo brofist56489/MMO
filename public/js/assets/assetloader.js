@@ -68,7 +68,7 @@ var ImageLoader = AssetLoader.extend({
     loadNextFile: function(callback) {
         var _this = this;
         var files = $.map(this.filesToLoad, function(file) {
-            Cache.images[file.valueOf()] = THREE.ImageUtils.loadTexture(file.valueOf());
+            Cache.images[file.valueOf()] = Render.ImageUtils.loadImage(file.valueOf());
             return Cache.images[file.valueOf()];
         });
         $.when.apply($, files).then(function() {
@@ -78,9 +78,10 @@ var ImageLoader = AssetLoader.extend({
     },
 
     correctImages: function() {
-        _.forEach(Cache.images, function(text) {
-            text.minFilter = THREE.NearestFilter;
-            text.magFilter = THREE.NearestFilter;
-        });
+        // _.forEach(Cache.images, function(text) {
+        //     text.minFilter = THREE.NearestFilter;
+        //     text.magFilter = THREE.NearestFilter;
+        // });
+        // Cache.images["/res/img/tiles/grass.png"] = Render.ImageUtils.tintImage(Cache.images["/res/img/tiles/grass.png"], 0xff0000);
     },
 });

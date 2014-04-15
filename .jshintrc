@@ -1,0 +1,12 @@
+{
+    "eqeqeq": true,
+    "indent": 4,
+    "debug": true,
+    "eqnull": true,
+    "evil": true,
+    "loopfunc": true,
+    "sub": true,
+    "jquery": true,
+    "node": true,
+    "expr": true
+}

@@ -18,17 +18,18 @@ var Game = Class.extend({
     
     tick: function() {
         // this.world.tick();
-
+        
         MouseJS.update();
     },
     
     render: function() {
         // this.world.render();
-        Render.fill("#5f5f5f");
-        _.times(1500, function(i) {
-            Render.drawRect((i % 300) * 2, Math.floor(i / 300) * 100, 100, 100, "#"+((i * 16).toString(16)), true);
-        });
-        // Render.drawCircle(100, 100, 50, "red", true);
+        // Render.fill("#5f5f5f");
+        Render.drawRect(0, 0, 100, 100, "red", true);
+        Render.drawRect(0, 100, 100, 100, "blue", true);
+        Render.drawRect(100, 100, 100, 100, "green", true);
+        Render.drawRect(100, 0, 100, 100, "yellow", true);
+        Render.drawCircle(100, 100, 10, "white", true);
         Render.finalizeRender();
     },
 });

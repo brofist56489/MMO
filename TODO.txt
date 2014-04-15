@@ -17,4 +17,8 @@ Things to be done:
     	1. flat 2d map with each tile being a mesh.
     	2. terrain like RCT3 would be cool.
     	3. ...
-    	THREE JS IS NOT FAST ENOUGH, SWITCHING TO CANVAS RENDERING.
+    	THREE JS IS NOT FAST ENOUGH (for what I want), SWITCHING TO CANVAS RENDERING.
+
+    (April 14) continue working on RenderJS.
+        1. image clipping DONE!
+        2. full matrix control.

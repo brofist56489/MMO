@@ -6,4 +6,10 @@ body, html, canvas {
     padding: 0px;
     margin: 0px;
     overflow: hidden;
+
+    image-render: optimizeSpeed;
+    image-render: -moz-crisp-edges;
+    image-render: -webkit-optmize-contrast;
+    image-render: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
 }

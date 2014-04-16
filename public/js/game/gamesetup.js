@@ -1,5 +1,5 @@
 function prepareForRun() {
-    MouseJS.init( $(document) );
+    MouseJS.init( $("#webgl-container") );
 
     setupTiles();
     

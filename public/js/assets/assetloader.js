@@ -17,6 +17,7 @@ var ScriptLoader = AssetLoader.extend({
 
             "/js/util/cameracontrols.js",
             "/js/util/utils.js",
+            "/js/util/vector.js",
             
             "/js/input/mousehandler.js",
             

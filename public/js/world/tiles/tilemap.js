@@ -3,6 +3,9 @@ var TileMap = Class.extend({
 	height: -1,
 	tiles: null,
 
+	view_distance_x: 15,
+	view_distance_y: 10,
+
 	init: function(w, h) {
 		this.width = w;
 		this.height = h;
@@ -14,7 +17,7 @@ var TileMap = Class.extend({
 		this.tiles = [];
 		for(var y=0, ym=this.height; y < ym; y++) {
 			for(var x=0, xm=this.width; x < xm; x++) {
-				this.tiles.push(new MappedTile((x + y) % 2, x, y));	
+				this.tiles.push(new MappedTile(Math.floor(Math.random() * 2), x, y));	
 			}
 		}
 	},
@@ -39,33 +42,59 @@ var TileMap = Class.extend({
 		this._updateTileType(x, y, tile);
 	},
 
-	addToScene: function(world) {
-		// var three = GAME.three;
-		_.forEach(this.tiles, function(tile) {
-			world.addToScene(tile.mesh);
-		});
+	tick: function() {
+	},
+
+	render: function() {
+		var trans = Render.getTranslation();
+		var cx = Math.floor(trans.x / TileHelper.SIZE);
+		var cy = Math.floor(trans.y / TileHelper.SIZE);
+
+		var y, x, tile;
+		for(y=cy-this.view_distance_y; y<=cy+this.view_distance_y; y++) {
+			for(x=cx-this.view_distance_x; x<=cx+this.view_distance_x; x++) {
+				tile = this.getTile(x, y);
+				if(tile) tile.render();
+			}
+		}
+		// for(y=0; y<this.height; y++) {
+		// 	for(x=0; x<this.width; x++) {
+		// 		this.getTile(x, y).render();
+		// 	}
+		// }
 	},
 });
 
 
 
 var MappedTile = Class.extend({
-	mesh: null,
+	baseTile: null,
 	id: null,
-	x: -1,
-	y: -1,
+
+	//World space coords
+	world_x: -1,
+	world_y: -1,
+
+	//Grid coords
+	map_x: -1,
+	map_y: -1,
 
 	init: function(id, x, y) {
 		this.id = id;
-		this.x = x;
-		this.y = y;
+		this.world_x = x * TileHelper.SIZE;
+		this.world_y = y * TileHelper.SIZE;
+		this.map_x = x;
+		this.map_y = y;
 
-		this.mesh = new THREE.Mesh(TileHelper.Geometry, TileHelper.getById(id).material);
-		this.mesh.position.set(x * 50, y * 50, 0);
+		this.baseTile = TileHelper.getById(id);
 	},
 
 	changeType: function(tile) {
-		this.mesh.material = tile.material;
+		this.baseTile = tile;
 		this.id = tile.id;
+	},
+
+	render: function() {
+		Render.drawImageSimple(this.baseTile.image, this.world_x, this.world_y);
 	},
 });

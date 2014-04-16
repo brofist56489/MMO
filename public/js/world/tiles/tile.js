@@ -1,16 +1,20 @@
 var Tile = Class.extend({
-	material: null,
+	image: null,
 	id: null,
 	color: 0xffffff,
 
 	init: function(id, textPath, color) {
 		this.color = color || 0xffffff;
 		this.id = id;
-		this.material = new THREE.MeshBasicMaterial({ map: Cache.images[textPath], color: this.color, side: THREE.FrontSide });
+
+		this.image = Cache.images["/res/img/tiles/" + textPath];
 	},
 });
 
 var TileHelper = {
+	// Store constants up here
+	SIZE: 16,
+
 	getById: function(id) {
 		var retVal = null;
 		_.forEach(TILES, function(t) {
@@ -24,9 +28,7 @@ var TileHelper = {
 
 function setupTiles() {
 	TILES = {
-		"GRASS": new Tile(0, "/res/img/tiles/grass.png"),
-		"STONE": new Tile(1, "/res/img/tiles/stone.png"),
+		"GRASS": new Tile(0, "grass.png"),
+		"STONE": new Tile(1, "stone.png"),
 	};
-
-	TileHelper.Geometry = new THREE.PlaneGeometry(50, 50, 1, 1);
 }

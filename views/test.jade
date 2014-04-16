@@ -1,14 +1,35 @@
 extends layout
 
 block loadHeadFiles
-    link(rel="stylesheet" href="css/game_page.css")
+	link(rel="stylesheet" href="css/game_page.css")
 
-    script(src="js/vendor/keyboard.min.js")
-    script(src="js/vendor/three.min.js")
-    script(src="js/assets/assetcache.js")
-    script(src="js/assets/assetloader.js")
-    
-    script(src="js/game/game.js")
+	script(src="js/vendor/keyboard.min.js")
+	script(src="js/vendor/three.min.js")
+	script(src="js/assets/assetcache.js")
+	script(src="js/assets/assetloader.js")
+	
+	script(src="js/game/game.js")
 
 block content
-    div(id="webgl-container")
+	center(id="loading-info-center")
+		div(id="loading-info")
+			p Loading...
+	div(id="webgl-container")
+	div(id="left-info-bar" style="opacity: 0")
+		p This is some test text 1
+		p This is some test text 2
+		p This is some test text 3
+		p This is some test text 4
+		p This is some test text 5
+		p This is some test text 6
+		p This is some test text 7
+		p This is some test text 8
+		p This is some test text 9
+
+	div(id="bottom-info-bar" style="opacity: 0")
+		p This is text YAY!
+		p This is text YAY!
+		p This is text YAY!
+		p This is text YAY!
+		p This is text YAY!
+		p This is text YAY!

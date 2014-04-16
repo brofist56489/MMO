@@ -29,7 +29,7 @@ var MouseJS = {
         jObject.mousedown(function(e) {
             return MouseJS.__onDown(e);
         });
-        jObject.mouseup(function(e) {
+        $(document).mouseup(function(e) {
             return MouseJS.__onUp(e);
         });
         jObject.mousemove(function(e) {

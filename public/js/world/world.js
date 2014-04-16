@@ -3,8 +3,8 @@ var World = Class.extend({
     tileMap: null,
     
     init: function() {
-        this.tileMap = new TileMap(10, 10);
-        this.tileMap.addToScene(this);
+        this.controls = new CameraControl(GAME.renderer);
+        this.tileMap = new TileMap(50, 50);
     },
     
     tick: function() {

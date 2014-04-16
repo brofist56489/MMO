@@ -1,3 +1,4 @@
+var i = 0.1;
 var Game = Class.extend({
     world: null,
     running: true,
@@ -10,26 +11,29 @@ var Game = Class.extend({
 
         this.renderer = new Render.CanvasRenderer(854, 480);
         Render.renderer = this.renderer;
-        $("#webgl-container").append(this.renderer.domElement);
+        this.renderer.setScale(2, 2);
+        this.renderer.updateMatrix();
 
-        // this.world = new World();
+        $("#webgl-container").css("opacity", "0");
+        $("#webgl-container").append(this.renderer.domElement);
+        $("#webgl-container").animate({ opacity: 1 }, 3000);
+        $("#left-info-bar").animate({ opacity: 1 }, 3000);
+        $("#bottom-info-bar").animate({ opacity: 1 }, 3000);
+        $("#loading-info-center").animate({ opacity: 0 }, 3000, function() { $(this).remove(); });
+
+        this.world = new World();
         new GameUpdater(this).start();
     },
     
     tick: function() {
-        // this.world.tick();
+        this.world.tick();
         
         MouseJS.update();
     },
     
     render: function() {
-        // this.world.render();
-        // Render.fill("#5f5f5f");
-        Render.drawRect(0, 0, 100, 100, "red", true);
-        Render.drawRect(0, 100, 100, 100, "blue", true);
-        Render.drawRect(100, 100, 100, 100, "green", true);
-        Render.drawRect(100, 0, 100, 100, "yellow", true);
-        Render.drawCircle(100, 100, 10, "white", true);
+        Render.fill("#5f5f5f");
+        this.world.render();
         Render.finalizeRender();
     },
 });
@@ -44,7 +48,7 @@ function loadAllAssets() {
             prepareForRun();
             setTimeout(function() {
                 new Game();
-            }, 1);
+            }, 2000);
         });
     });
 }

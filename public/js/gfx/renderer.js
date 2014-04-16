@@ -66,7 +66,28 @@ Render.Renderer = function(w, h) {
 	this.setRotation = function(rot) {
 	};
 
+	this.getTranslation = function() {
+	};
+
+	this.getScale = function() {
+	};
+
+	this.getRotation = function() {
+	};
+
+	this.translate = function(x, y) {
+	};
+
+	this.scale = function(x, y) {
+	};
+
+	this.rotate = function(rot) {
+	};
+
 	this.updateMatrix = function() {
+	};
+
+	this.getMatrix = function() {
 	};
 };
 
@@ -123,7 +144,7 @@ Render.CanvasRenderer = function(w, h) {
 
 	this._fill = function(color) {
 		ctx.fillStyle = color;
-		ctx.fillRect(-trans_x, -trans_y, this.width, this.height);
+		ctx.fillRect(-trans_x / scale_x, -trans_y / scale_y, this.width / scale_x, this.height / scale_y);
 	};
 
 	this._fillRect = function(x, y, w, h, color) {
@@ -157,12 +178,12 @@ Render.CanvasRenderer = function(w, h) {
 	};
 
 	this._drawImageSimple = function(image, x, y) {
-		if(x + trans_x  < -image.w || y + trans_y < -image.h || x + trans_x >= this.width || y + trans_y >= this.height) return;
+		// if(x + trans_x  < -image.w || y + trans_y < -image.h || x + trans_x >= this.width || y + trans_y >= this.height) return;
 		ctx.drawImage(image._domImage, x, y);
 	};
 
 	this._drawImageComplex = function(image, sx, sy, sw, sh, dx, dy, dw, dh) {
-		if(dx + trans_x  < -dw || dy + trans_y < -dh || dx + trans_x >= this.width || dy + trans_y >= this.height) return;
+		// if(dx + trans_x  < -dw || dy + trans_y < -dh || dx + trans_x >= this.width || dy + trans_y >= this.height) return;
 		ctx.drawImage(image._domImagem, sx, sy, sw, sh, dx, dy, dw, dh);
 	};
 
@@ -173,6 +194,10 @@ Render.CanvasRenderer = function(w, h) {
 			0, 0, 1
 		];
 		ctx.setTransform(scale_x * Math.cos(rotation), Math.sin(rotation), -Math.sin(rotation), scale_y * Math.cos(rotation), trans_x, trans_y);
+	};
+
+	this.getMatrix = function() {
+		return matrix;
 	};
 
 	this.setTranslation = function(x, y) {
@@ -193,6 +218,41 @@ Render.CanvasRenderer = function(w, h) {
 
 	this.setRotation = function(rot) {
 		rotation = rot;
+	};
+
+	this.getTranslation = function() {
+		return {
+			x: (trans_x - this.width / 2) / -scale_x,
+			y: (trans_y - this.height / 2) / -scale_y
+		};
+	};
+
+	this.getScale = function() {
+		return {
+			x: scale_x,
+			y: scale_y
+		};
+	};
+
+	this.getRotation = function() {
+		return rotation;
+	};
+
+	this.translate = function(x, y) {
+		var sx = this.getTranslation().x + x;
+		var sy = this.getTranslation().y + y;
+		this.setTranslation(sx, sy);
+	};
+
+	this.scale = function(x, y) {
+		var sx = this.getScale().x * x;
+		var sy = this.getScale().y * y;
+		this.setScale(sx, sy);
+	};
+
+	this.rotate = function(rot) {
+		var rrot = this.getRotation() + rot;
+		this.setRotation(rrot);
 	};
 };
 
@@ -296,6 +356,64 @@ Render.setRotation = function(rot) {
  */
 Render.updateMatrix = function() {
 	Render._renderer.updateMatrix();
+};
+
+/**
+ * Gets the current rendering matrix
+ * @return {Matrix3} the matrix used by the camera
+ */
+Render.getMatrix = function() {
+	return Render._renderer.getMatrix();
+};
+
+/**
+ * Gets the center point of the screen
+ * @return {Object {x, y}} the center point
+ */
+Render.getTranslation = function() {
+	return Render._renderer.getTranslation();
+};
+
+/**
+ * Gets the scale factor for x and y
+ * @return {Object {x, y}} the scale factors
+ */
+Render.getScale = function() {
+	return Render._renderer.getScale();
+};
+
+/**
+ * Gets the rotation in radians
+ * @return {Number} rotation in radians
+ */
+Render.getRotation = function() {
+	return Render._renderer.getRotation();
+};
+
+/**
+ * Alters translate by [x] on x, and [y] on y
+ * @param  {Number} x x-change
+ * @param  {Number} y y-change
+ */
+Render.translate = function(x, y) {
+	Render._renderer.translate(x, y);
+};
+
+/**
+ * Alters scale
+ * @param  {Number} x x-scale
+ * @param  {Number} y y-scale
+ */
+Render.scale = function(x, y) {
+	Render._renderer.scale(x, y);
+};
+
+/**
+ * Rotate relative to current rotation in radians
+ * @param  {Number} rot rotation in radians
+ */
+Render.rotate = function(rot) {
+	Render._renderer.rotate(rot);
 };
 
 /**

@@ -25,6 +25,7 @@ var ScriptLoader = AssetLoader.extend({
             "/js/vendor/heightmap.js",
             
             "/js/gfx/renderer.js",
+            "/js/gfx/draggable.js",
             
             "/js/world/tiles/tile.js",
             "/js/world/tiles/tilemap.js",

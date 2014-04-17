@@ -17,9 +17,21 @@ var Game = Class.extend({
         $("#webgl-container").css("opacity", "0");
         $("#webgl-container").append(this.renderer.domElement);
         $("#webgl-container").animate({ opacity: 1 }, 3000);
-        $("#left-info-bar").animate({ opacity: 1 }, 3000);
-        $("#bottom-info-bar").animate({ opacity: 1 }, 3000);
+
         $("#loading-info-center").animate({ opacity: 0 }, 3000, function() { $(this).remove(); });
+         
+        $(".info-window").draggable();
+        $(".close-window-button").hover(function() {
+            $(this).css("background-color", "#ff0000");
+        }, function() {
+            $(this).css("background-color", "#ffffff");
+        });
+
+        $(".close-window-button").click(function() {
+            $(this).parent().remove();
+        });
+
+        $(".info-window").css("position", "absolute");
 
         this.world = new World();
         new GameUpdater(this).start();
@@ -48,7 +60,7 @@ function loadAllAssets() {
             prepareForRun();
             setTimeout(function() {
                 new Game();
-            }, 2000);
+            }, 1);
         });
     });
 }

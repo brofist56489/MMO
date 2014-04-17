@@ -434,7 +434,6 @@ Render.Image = function() {
 	this.loaded = false;
 
 	this._loadFromUrl = function(path, callback) {
-		console.log(path);
 		var _this = this;
 		this.src = path;
 		this._onLoad = callback;
